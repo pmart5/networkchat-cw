@@ -63,7 +63,7 @@ public class ServerConnectionHandler extends Thread {
     private void getNickname() throws IOException {
         sendMessage(getSpiritDesign(INPUT_NICKNAME.getMsg()));
         String clientMessage = in.readLine();
-        if (clientMessage != null) {
+        if (!clientMessage.equals("null")) {
             clientNickname = clientMessage;
         }
     }
@@ -102,7 +102,7 @@ public class ServerConnectionHandler extends Thread {
 
     private void sendMessageSpirit(ServerConnectionHandler connection, String messageSpirit) {
         connection.sendMessage(getSpiritDesign(String.format(messageSpirit, clientNickname,
-                Server.connections.size() - NUMBER_SERVICE_THREADS.getValue())));
+                connections.size() - NUMBER_SERVICE_THREADS.getValue())));
     }
 
     private void sendToEveryoneExceptYourself(String clientMessage) {
