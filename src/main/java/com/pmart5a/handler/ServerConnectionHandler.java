@@ -63,7 +63,7 @@ public class ServerConnectionHandler extends Thread {
     private void getNickname() throws IOException {
         sendMessage(getSpiritDesign(INPUT_NICKNAME.getMsg()));
         String clientMessage = in.readLine();
-        if (!clientMessage.equals("null")) {
+        if (!clientMessage.equals("null") && !clientMessage.equals("")) {
             clientNickname = clientMessage;
         }
     }

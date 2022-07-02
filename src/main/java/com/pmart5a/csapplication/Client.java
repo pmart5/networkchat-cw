@@ -30,11 +30,14 @@ public class Client {
 
     private static void writeMessage(PrintWriter out, Logger logger, Logger messageLogger) {
         try (BufferedReader inConsole = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
-            String nickname = inConsole.readLine();
+            String nickname = inConsole.readLine().trim();
             out.println(nickname);
             String userMessage;
             do {
-                userMessage = inConsole.readLine();
+                userMessage = inConsole.readLine().trim();
+                if (userMessage.equals("")) {
+                    continue;
+                }
                 out.println(userMessage);
                 if (!userMessage.equals(EXIT_COMMAND.getValue())) {
                     messageLogger.logFile(getUserDesign(String.format(NICKNAME_MESSAGE.getMsg(), nickname,
